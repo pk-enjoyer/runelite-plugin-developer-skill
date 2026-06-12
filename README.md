@@ -1,12 +1,18 @@
-# RuneLite Plugin Developer Skill
+# RuneLite Plugin Developer Marketplace
 
-Codex plugin package for building, reviewing, testing, and publishing Java 11 RuneLite external plugins for Old School RuneScape.
+Codex plugin marketplace for building, reviewing, testing, and publishing Java 11 RuneLite external plugins for Old School RuneScape.
 
 The skill focuses on RuneLite Plugin Hub constraints, Jagex third-party client guidelines, RuneLite API usage, Java quality, and practical plugin development workflow.
 
 ## Repository Description
 
-Codex skill and plugin for building, reviewing, and testing Java 11 RuneLite external plugins for OSRS with Plugin Hub and Jagex guideline checks.
+Codex plugin marketplace for a RuneLite external plugin development skill focused on OSRS, Java 11, Plugin Hub compliance, and Jagex guideline checks.
+
+## Suggested Repository Name
+
+`runelite-plugin-developer-marketplace`
+
+The current repository can still be used as-is. If you rename it, update the install command and plugin metadata URLs to the new repository name.
 
 ## What It Helps With
 
@@ -18,34 +24,39 @@ Codex skill and plugin for building, reviewing, and testing Java 11 RuneLite ext
 
 ## Contents
 
-- `.codex-plugin/plugin.json` - Codex plugin manifest.
-- `skills/runelite-plugin-developer/SKILL.md` - skill entrypoint.
-- `skills/runelite-plugin-developer/agents/openai.yaml` - optional Codex UI metadata.
-- `skills/runelite-plugin-developer/references/` - supporting RuneLite, OSRS, API, quality, and testing guidance loaded only when needed.
+- `.agents/plugins/marketplace.json` - Codex marketplace catalog.
+- `plugins/runelite-plugin-developer/.codex-plugin/plugin.json` - Codex plugin manifest.
+- `plugins/runelite-plugin-developer/skills/runelite-plugin-developer/SKILL.md` - skill entrypoint.
+- `plugins/runelite-plugin-developer/skills/runelite-plugin-developer/agents/openai.yaml` - optional Codex UI metadata.
+- `plugins/runelite-plugin-developer/skills/runelite-plugin-developer/references/` - supporting RuneLite, OSRS, API, quality, and testing guidance loaded only when needed.
 
 ## Use as a Skill
 
-Install or copy `skills/runelite-plugin-developer/` as a Codex skill folder. Codex discovers the skill from that folder's `SKILL.md` and can invoke it as:
+Install or copy `plugins/runelite-plugin-developer/skills/runelite-plugin-developer/` as a Codex skill folder. Codex discovers the skill from that folder's `SKILL.md` and can invoke it as:
 
 ```text
 $runelite-plugin-developer
 ```
 
-## Use as a Plugin
+## Add as a Codex Marketplace
 
-This repository includes a Codex plugin manifest:
+Add this repository as a Codex plugin marketplace:
 
-```text
-.codex-plugin/plugin.json
+```bash
+codex plugin marketplace add pk-enjoyer/runelite-plugin-developer-skill --ref main
 ```
 
-The manifest points at the `skills/` directory:
+Then open the Codex plugin directory, select `pk-enjoyer Codex Plugins`, and install `RuneLite Plugin Developer`.
+
+## Plugin Layout
+
+The marketplace entry points at:
 
 ```text
-skills/runelite-plugin-developer/
+plugins/runelite-plugin-developer/
 ```
 
-Use this layout when adding the repository to a Codex plugin marketplace or packaging it with other reusable Codex workflows.
+That plugin manifest points at its bundled `skills/` directory.
 
 ## Suggested GitHub Topics
 
