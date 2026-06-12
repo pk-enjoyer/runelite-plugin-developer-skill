@@ -39,6 +39,23 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 - Keep config group/key names stable. If renaming is unavoidable, implement migration so users do not silently lose settings.
 - Avoid noisy production logging: use `log.debug()` for diagnostics and reserve `log.info()` for startup/shutdown or infrequent events.
 
+## Versioning Note
+
+- For Plugin Hub projects using `build=standard`, the Plugin Hub packager replaces the plugin's local `build.gradle` and `settings.gradle` during packaging. Do not assume `project.version` in `build.gradle` is what the Hub displays.
+- Prefer an explicit `version=` field in `runelite-plugin.properties` for the Plugin Hub display version when the project uses `build=standard`.
+- If the repository also declares `version = '...'` in `build.gradle`, keep it in sync with `runelite-plugin.properties` for local builds and artifacts, but treat `runelite-plugin.properties` as the Hub-facing source.
+- When preparing a release, inspect the target repository's existing versioning convention before changing numbers. If the release type is ambiguous, ask whether the change should be patch, minor, or major instead of inventing project policy.
+
+## Common Mistakes
+
+- Assuming a pull request, tag, or GitHub release in the plugin's own repository updates the RuneLite Plugin Hub. Existing Hub plugins are updated by changing the pinned `commit=` in `runelite/plugin-hub`.
+- Pinning a short SHA in a Plugin Hub manifest. Use the full 40-character commit hash.
+- Treating the RuneLite Plugin Hub human-review gate as a build failure. Distinguish the actual build check from maintainer-review routing.
+- Creating fresh `Gson` instances in production plugin code. Use injected `Gson`, or pass the injected instance into helpers; fresh `new Gson()` or `new GsonBuilder().create()` can be rejected by Plugin Hub tooling.
+- Relying only on `build.gradle` for the displayed Plugin Hub version when `runelite-plugin.properties` uses `build=standard`.
+- Forgetting Java 11 compatibility by adding records, text blocks, switch expressions, pattern matching, sealed classes, or post-Java-11 APIs.
+- Broadly editing widget trees, sprite overrides, menu entries, or hot render paths without first narrowing the RuneLite API surface and checking Plugin Hub/Jagex rules.
+
 ## Completion Checklist
 
 When finishing a RuneLite plugin task:
