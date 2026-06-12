@@ -1,0 +1,4 @@
+interface:
+  display_name: "RuneLite Plugin Developer"
+  short_description: "Build compliant OSRS RuneLite plugins"
+  default_prompt: "Use $runelite-plugin-developer to implement and verify a RuneLite external plugin change."

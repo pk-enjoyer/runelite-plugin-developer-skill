@@ -1,0 +1,36 @@
+{
+  "name": "runelite-plugin-developer",
+  "version": "1.0.0",
+  "description": "RuneLite external plugin development workflow for Codex.",
+  "author": {
+    "name": "pk-enjoyer",
+    "url": "https://github.com/pk-enjoyer"
+  },
+  "homepage": "https://github.com/pk-enjoyer/runelite-plugin-developer-skill",
+  "repository": "https://github.com/pk-enjoyer/runelite-plugin-developer-skill",
+  "license": "Apache-2.0",
+  "keywords": [
+    "codex",
+    "skills",
+    "runelite",
+    "osrs",
+    "java"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "RuneLite Plugin Developer",
+    "shortDescription": "Build compliant OSRS RuneLite plugins",
+    "longDescription": "A Codex plugin that packages the runelite-plugin-developer skill for implementing, reviewing, testing, and publishing RuneLite external plugins with Java 11 and Plugin Hub constraints in mind.",
+    "developerName": "pk-enjoyer",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/pk-enjoyer/runelite-plugin-developer-skill",
+    "defaultPrompt": [
+      "Use RuneLite Plugin Developer to implement a plugin change.",
+      "Review this RuneLite plugin for Plugin Hub readiness."
+    ]
+  }
+}
