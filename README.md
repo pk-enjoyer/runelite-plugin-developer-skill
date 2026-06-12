@@ -1,6 +1,6 @@
 # RuneLite Plugin Developer Skill
 
-Codex skill and plugin package for building, reviewing, testing, and publishing Java 11 RuneLite external plugins for Old School RuneScape.
+Codex plugin package for building, reviewing, testing, and publishing Java 11 RuneLite external plugins for Old School RuneScape.
 
 The skill focuses on RuneLite Plugin Hub constraints, Jagex third-party client guidelines, RuneLite API usage, Java quality, and practical plugin development workflow.
 
@@ -18,15 +18,14 @@ Codex skill and plugin for building, reviewing, and testing Java 11 RuneLite ext
 
 ## Contents
 
-- `SKILL.md` - direct skill entrypoint for local skill installation or copying.
-- `agents/openai.yaml` - optional Codex UI metadata for the direct skill.
-- `references/` - supporting RuneLite, OSRS, API, quality, and testing guidance loaded only when needed.
 - `.codex-plugin/plugin.json` - Codex plugin manifest.
-- `skills/runelite-plugin-developer/` - canonical plugin-packaged copy of the skill.
+- `skills/runelite-plugin-developer/SKILL.md` - skill entrypoint.
+- `skills/runelite-plugin-developer/agents/openai.yaml` - optional Codex UI metadata.
+- `skills/runelite-plugin-developer/references/` - supporting RuneLite, OSRS, API, quality, and testing guidance loaded only when needed.
 
 ## Use as a Skill
 
-Install or copy this repository root as a Codex skill folder. Codex discovers the skill from `SKILL.md` and can invoke it as:
+Install or copy `skills/runelite-plugin-developer/` as a Codex skill folder. Codex discovers the skill from that folder's `SKILL.md` and can invoke it as:
 
 ```text
 $runelite-plugin-developer
@@ -34,19 +33,19 @@ $runelite-plugin-developer
 
 ## Use as a Plugin
 
-This repository also includes a Codex plugin manifest:
+This repository includes a Codex plugin manifest:
 
 ```text
 .codex-plugin/plugin.json
 ```
 
-The manifest points at:
+The manifest points at the `skills/` directory:
 
 ```text
 skills/runelite-plugin-developer/
 ```
 
-Use that layout when adding this repository to a Codex plugin marketplace or when packaging it with other reusable Codex workflows.
+Use this layout when adding the repository to a Codex plugin marketplace or packaging it with other reusable Codex workflows.
 
 ## Suggested GitHub Topics
 
