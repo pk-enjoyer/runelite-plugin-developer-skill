@@ -58,26 +58,6 @@ plugins/runelite-plugin-developer/
 
 That plugin manifest points at its bundled `skills/` directory.
 
-## Suggested GitHub Topics
-
-```text
-codex
-codex-skill
-codex-plugin
-openai-codex
-agent-skills
-runelite
-runelite-plugin
-osrs
-old-school-runescape
-java
-java11
-plugin-hub
-jagex
-developer-tools
-ai-agents
-```
-
 ## License
 
 Apache-2.0
