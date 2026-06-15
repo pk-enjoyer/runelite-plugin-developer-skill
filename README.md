@@ -2,7 +2,7 @@
 
 Codex plugin marketplace for building, reviewing, testing, and publishing Java 11 RuneLite external plugins for Old School RuneScape.
 
-The skill focuses on RuneLite Plugin Hub constraints, Jagex third-party client guidelines, RuneLite API usage, Java quality, and practical plugin development workflow.
+The skill focuses on RuneLite core and Plugin Hub prior-art research, Plugin Hub constraints, Jagex third-party client guidelines, RuneLite API usage, Java quality, and practical plugin development workflow.
 
 ## Repository Description
 
@@ -17,6 +17,7 @@ The current repository can still be used as-is. If you rename it, update the ins
 ## What It Helps With
 
 - Building RuneLite external plugins for Old School RuneScape
+- Searching RuneLite core and Plugin Hub for existing plugins and implementation examples
 - Reviewing plugin changes for RuneLite Plugin Hub readiness
 - Choosing the right RuneLite API surface for game state, widgets, overlays, menus, and events
 - Keeping Java code compatible with Java 11
