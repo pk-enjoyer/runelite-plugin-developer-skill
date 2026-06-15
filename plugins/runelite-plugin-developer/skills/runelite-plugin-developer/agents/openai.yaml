@@ -1,4 +1,4 @@
 interface:
   display_name: "RuneLite Plugin Developer"
-  short_description: "Research and build OSRS RuneLite plugins"
-  default_prompt: "Use $runelite-plugin-developer to research, implement, and verify a RuneLite external plugin change."
+  short_description: "Research, debug, build, and preflight OSRS plugins"
+  default_prompt: "Use $runelite-plugin-developer to research, debug, implement, preflight, and verify a RuneLite external plugin change."

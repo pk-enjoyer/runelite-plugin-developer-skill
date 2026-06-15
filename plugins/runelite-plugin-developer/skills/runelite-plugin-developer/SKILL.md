@@ -1,6 +1,6 @@
 ---
 name: runelite-plugin-developer
-description: Build, modify, review, test, package, research, or troubleshoot Java 11 RuneLite external plugins for Old School RuneScape. Use for tasks involving OSRS/RuneLite mental models, OSRS Wiki mechanics research, RuneLite core and Plugin Hub prior-art search, finding examples in existing plugins, RuneLite API/Javadocs, net.runelite.api game state, gameval IDs/constants, Client APIs, events, widgets, item containers, menus, overlays, Swing plugin panels, @PluginDescriptor, config, Java 11 code quality, RuneLite performance/concurrency/logging/test review, passive event capture/replay fixture testing, Plugin Hub compliance, Jagex/RuneLite feature restrictions, Gradle test/run workflows, resource loading, HTTP/JSON/file I/O, or manual in-game validation.
+description: Build, modify, review, test, package, research, debug, troubleshoot, or prepare CI/preflight checks for Java 11 RuneLite external plugins for Old School RuneScape. Use for tasks involving OSRS/RuneLite mental models, OSRS Wiki mechanics research, RuneLite core and Plugin Hub prior-art search, finding examples in existing plugins, RuneLite API/Javadocs, net.runelite.api game state, gameval IDs/constants, Client APIs, events, widgets, item containers, menus, overlays, Swing plugin panels, @PluginDescriptor, config, Java 11 code quality, RuneLite performance/concurrency/logging/test review, passive event capture/replay fixture testing, manual live-client debugging, Plugin Hub compliance, Plugin Hub packager/preflight CI, Jagex/RuneLite feature restrictions, Gradle test/run workflows, resource loading, HTTP/JSON/file I/O, or manual in-game validation.
 ---
 
 # RuneLite Plugin Developer
@@ -21,8 +21,10 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 7. Read [references/java-quality.md](references/java-quality.md) when changing or reviewing core Java logic, concurrency/threading, render or tick hot paths, logging, resource handling, nullability, collections, or test quality.
 8. Keep Java 11 compatibility. Do not introduce records, text blocks, switch expressions, pattern matching, sealed classes, or APIs added after Java 11.
 9. Add or update focused tests where automated verification is possible. Read [references/testing.md](references/testing.md) before changing behavior or test infrastructure; for behavior that depends on live in-game event sequences, prefer passive capture/replay fixtures combined with unit tests over live-client automation.
-10. Run the repo's automated check, usually `./gradlew test`; if local instructions require a specific JDK or command, use that.
-11. Never automate RuneScape gameplay or interact with RuneScape through browser/computer-use tools. A clean JVM start is not a passing in-game test.
+10. For live-client bugs or ambiguous game interactions, use the manual live debugging loop in [references/testing.md](references/testing.md). Before asking the user to reproduce the issue, write an ASCII or Mermaid interaction diagram that includes OSRS/Jagex, RuneLite, the plugin, user actions, observed events, plugin state, and UI/output.
+11. Run the repo's automated check, usually `./gradlew test`; if local instructions require a specific JDK or command, use that.
+12. When preparing a Plugin Hub submission or release, offer an optional Plugin Hub preflight pipeline based on the upstream packager workflow. Read [references/testing.md](references/testing.md) for the limits of packager CI and RuneLite GitHub App checks.
+13. Never automate RuneScape gameplay or interact with RuneScape through browser/computer-use tools. A clean JVM start is not a passing in-game test.
 
 ## Implementation Guardrails
 
