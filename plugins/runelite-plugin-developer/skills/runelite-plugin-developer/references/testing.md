@@ -52,6 +52,8 @@ Do not blindly copy the upstream `push`/`pull_request` trigger logic into plugin
 
 RuneLite GitHub App checks are separate from the packager build. The public `runelite/runelite-github-app` source labels Plugin Hub PRs, posts a sticky `<!-- rlphc -->` compare comment, tracks author/repository/warning/package/dependency changes, buckets diff size, and marks `ready to merge` after plugin-approver reviews. It listens to GitHub App events and needs the real app installation, org team access, labels, PR reviews, and sometimes `TEAM_TOKEN`. Treat this as PR triage/review automation, not as a standalone build step.
 
+Treat diff size as review-risk guidance, not an absolute rule. As a working heuristic, consider `<=1000` changed lines small, `1001-3000` medium, and `>3000` large. Encourage users to keep RuneLite and Plugin Hub PRs small enough for human review and automated triage. For large PRs, recommend splitting into focused preparatory, mechanical, behavior, and test changes when the split can be made without hiding functional dependencies.
+
 If the user asks to "recreate Plugin Hub checks":
 
 - offer the packager preflight workflow for build/package validation

@@ -16,6 +16,7 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 2. Search RuneLite core plugins and Plugin Hub for prior art when starting a new plugin, adding a sizable feature, touching an unfamiliar RuneLite API, or looking for examples. Read [references/plugin-hub-research.md](references/plugin-hub-research.md) to check for duplicate/overlapping plugins and find comparable source code.
 3. Check compliance before implementing features that touch combat, PvP, menu entries, interfaces, input, player data, HTTP, persistence, external processes, or runtime loading. Read [references/runelite-rules.md](references/runelite-rules.md) first for these areas.
 4. Read [references/runelite-concepts.md](references/runelite-concepts.md) when a feature depends on how OSRS, Jagex servers, the RuneLite client, plugins, and users interact, or when the request is ambiguous about what a plugin can observe, draw, change, or automate. Use the OSRS Wiki for game-mechanics context, terminology, content pages, and player-facing behavior before designing mechanics-heavy features.
+   - When a user uses ambiguous player slang, search the OSRS Wiki and inspect redirects/aliases, not just article text. Wiki redirects can map community terms to canonical mechanics; for example, `Cum` redirects to `Unstable Orb`, the Akkha final-phase orb in Tombs of Amascut.
 5. Before implementing game-state, UI, menu, item, scene, var, coordinate, or cache behavior, choose the narrowest RuneLite API surface that models it. Read [references/runelite-api.md](references/runelite-api.md) to map the task to `net.runelite.api`, events, widgets, coordinates, `gameval` constants, and common `net.runelite.client` services.
 6. Follow existing architecture. Keep RuneLite boundary code in plugin/event/UI classes and move business logic into small testable services or models when practical. Read [references/plugin-patterns.md](references/plugin-patterns.md) when changing lifecycle, config, overlays, panels, event handling, HTTP/JSON/file I/O, or resources.
 7. Read [references/java-quality.md](references/java-quality.md) when changing or reviewing core Java logic, concurrency/threading, render or tick hot paths, logging, resource handling, nullability, collections, or test quality.
@@ -23,8 +24,9 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 9. Add or update focused tests where automated verification is possible. Read [references/testing.md](references/testing.md) before changing behavior or test infrastructure; for behavior that depends on live in-game event sequences, prefer passive capture/replay fixtures combined with unit tests over live-client automation.
 10. For live-client bugs or ambiguous game interactions, use the manual live debugging loop in [references/testing.md](references/testing.md). Before asking the user to reproduce the issue, write an ASCII or Mermaid interaction diagram that includes OSRS/Jagex, RuneLite, the plugin, user actions, observed events, plugin state, and UI/output.
 11. Run the repo's automated check, usually `./gradlew test`; if local instructions require a specific JDK or command, use that.
-12. When preparing a Plugin Hub submission or release, offer an optional Plugin Hub preflight pipeline based on the upstream packager workflow. Read [references/testing.md](references/testing.md) for the limits of packager CI and RuneLite GitHub App checks.
-13. Never automate RuneScape gameplay or interact with RuneScape through browser/computer-use tools. A clean JVM start is not a passing in-game test.
+12. When preparing a GitHub or Plugin Hub PR, estimate changed-line count with generated files excluded where practical and encourage a reviewable scope. Use `<=1000` changed lines as small, `1001-3000` as medium, and `>3000` as large. For medium PRs, suggest whether a clean split is available; for large PRs, actively recommend splitting into smaller preparatory, mechanical, behavior, and test PRs unless the change is inherently atomic.
+13. When preparing a Plugin Hub submission or release, offer an optional Plugin Hub preflight pipeline based on the upstream packager workflow. Read [references/testing.md](references/testing.md) for the limits of packager CI and RuneLite GitHub App checks.
+14. Never automate RuneScape gameplay or interact with RuneScape through browser/computer-use tools. A clean JVM start is not a passing in-game test.
 
 ## Implementation Guardrails
 
@@ -41,6 +43,8 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 - Do not use reflection, JNI/JNA, `Unsafe`, external processes, dynamic code loading, runtime code generation, or Java serialization in hub-bound plugin code.
 - Keep config group/key names stable. If renaming is unavoidable, implement migration so users do not silently lose settings.
 - Avoid noisy production logging: use `log.debug()` for diagnostics and reserve `log.info()` for startup/shutdown or infrequent events.
+- Before copying substantial code or structure from another plugin, confirm the source is under a permissive license compatible with RuneLite Plugin Hub expectations, such as BSD-2, and ask whether the user should make a PR to the original repository instead. If copying a whole class, preserve existing copyright/license notices and attribute the original developer in that class. If copying multiple whole classes, also document the copied code and attribution in a third-party notice, copyright, or license file.
+- Before adding or touching many Java classes in a project without a recorded preference, ask once whether the user wants copyright/license notice blocks in each source class. Persist the answer in project instructions, preferably `AGENTS.md` when the project uses it, or otherwise in a small repo-local note such as `.agents/copyright-notices.md`; apply the recorded preference consistently and do not re-ask for that project.
 
 ## Versioning Note
 
@@ -56,6 +60,7 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 - Treating the RuneLite Plugin Hub human-review gate as a build failure. Distinguish the actual build check from maintainer-review routing.
 - Creating fresh `Gson` instances in production plugin code. Use injected `Gson`, or pass the injected instance into helpers; fresh `new Gson()` or `new GsonBuilder().create()` can be rejected by Plugin Hub tooling.
 - Relying only on `build.gradle` for the displayed Plugin Hub version when `runelite-plugin.properties` uses `build=standard`.
+- Searching only OSRS Wiki article bodies for player slang. Check search results and redirects so slang aliases resolve to the canonical page before choosing IDs or behavior.
 - Forgetting Java 11 compatibility by adding records, text blocks, switch expressions, pattern matching, sealed classes, or post-Java-11 APIs.
 - Broadly editing widget trees, sprite overrides, menu entries, or hot render paths without first narrowing the RuneLite API surface and checking Plugin Hub/Jagex rules.
 
@@ -64,6 +69,7 @@ Use this skill to make RuneLite external plugin changes that are maintainable, J
 When finishing a RuneLite plugin task:
 
 - Summarize changed files and behavior.
+- Report the approximate PR size bucket when the work is headed for RuneLite or Plugin Hub review, and recommend a smaller split for large diffs or obvious mixed-scope medium diffs.
 - Report automated checks run and any failures or skipped checks.
 - Offer to launch the development client by running `./gradlew run` from the plugin root.
 - Tell the user to follow RuneLite's "Using Jagex Accounts" instructions when logging into the development client: https://github.com/runelite/runelite/wiki/Using-Jagex-Accounts
