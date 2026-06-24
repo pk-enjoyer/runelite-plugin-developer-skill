@@ -8,12 +8,6 @@ The skill focuses on RuneLite core and Plugin Hub prior-art research, Plugin Hub
 
 Codex plugin marketplace for a RuneLite external plugin development skill focused on OSRS, Java 11, Plugin Hub compliance, and Jagex guideline checks.
 
-## Suggested Repository Name
-
-`runelite-plugin-developer-marketplace`
-
-The current repository can still be used as-is. If you rename it, update the install command and plugin metadata URLs to the new repository name.
-
 ## What It Helps With
 
 - Building RuneLite external plugins for Old School RuneScape
